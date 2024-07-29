@@ -1,17 +1,24 @@
-<?php 
+<?php
 require_once 'vendor/autoload.php';
 
-$url = $_GET['url'];
+$url = $_SERVER["REQUEST_URI"];
 
-if($url == '/editar-produto'){
-        include 'editar-produto.php';
-}elseif($url == "/admin") {
-        include 'admin.php';
-}elseif($url == "cadastrar"){
-        include 'cadastrar-produto.php';
-}else{
-    header('Location: ');
+if($url == '/admin')
+{
+    include "admin.php";
+}elseif($url == '/cadastrar')
+{
+    include "cadastrar-produto.php";
+}elseif($url == '/editar')
+{
+    include "editar-produto.php";
+}else
+{
+
+    include "login.php";
 }
+
+
 
 
 use Dbseller\ProjetoInicial\Infra\Persistence\ConexaoBd;
@@ -22,7 +29,7 @@ $produtoRepositorio = new ProdutoRepositorio($pdo);
 $dadosCafe = $produtoRepositorio->opcoesCafe();
 
 $produtoRepositorio2 = new ProdutoRepositorio($pdo);
-$dadosAlmoco = $produtoRepositorio2->opcoesAlmoco();
+$dadosAlmoco = $produtoRepositorio2->opcoesAlmoco();    
 
 
 
@@ -62,7 +69,7 @@ $dadosAlmoco = $produtoRepositorio2->opcoesAlmoco();
                         <div class="container-foto">
                             <img src="<?=$cafe->getImagemDiretorio()?>">
                         </div>
-                        <p><?= $cafe->getNome()?></p>
+                        <p><?= $cafe->getNome() ?></p>
                         <p><?= $cafe->getDescricao()?></p>
                         <p><?= $cafe->getPrecoFormatado()?></p>
                     </div>
