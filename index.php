@@ -1,7 +1,19 @@
 <?php 
 require_once 'vendor/autoload.php';
 
-use Dbseller\ProjetoInicial\Modelo\Produto;
+$url = $_GET['url'];
+
+if($url == '/editar-produto'){
+        include 'editar-produto.php';
+}elseif($url == "/admin") {
+        include 'admin.php';
+}elseif($url == "cadastrar"){
+        include 'cadastrar-produto.php';
+}else{
+    header('Location: ');
+}
+
+
 use Dbseller\ProjetoInicial\Infra\Persistence\ConexaoBd;
 use Dbseller\ProjetoInicial\Repositorio\ProdutoRepositorio;
 $pdo = ConexaoBd::createConnection();
@@ -50,7 +62,7 @@ $dadosAlmoco = $produtoRepositorio2->opcoesAlmoco();
                         <div class="container-foto">
                             <img src="<?=$cafe->getImagemDiretorio()?>">
                         </div>
-                        <p><?= $cafe->getNome() ?></p>
+                        <p><?= $cafe->getNome()?></p>
                         <p><?= $cafe->getDescricao()?></p>
                         <p><?= $cafe->getPrecoFormatado()?></p>
                     </div>
