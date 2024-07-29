@@ -1,0 +1,10 @@
+{
+    "name": "dbseller/projeto-inicial",
+    "description": "Site para uma cafeteria.",
+    "autoload": {
+        "psr-4": {
+            "Dbseller\\ProjetoInicial\\": "src/"
+        }
+    },
+    "require": {}
+}
