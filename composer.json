@@ -6,5 +6,7 @@
             "Dbseller\\ProjetoInicial\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "dompdf/dompdf": "^3.0"
+    }
 }
