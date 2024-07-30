@@ -12,10 +12,11 @@ if($url == '/admin')
 }elseif($url == '/editar')
 {
     include "editar-produto.php";
+}elseif($url == '/login'){
+    include "login.php";
 }else
 {
 
-    include "login.php";
 }
 
 

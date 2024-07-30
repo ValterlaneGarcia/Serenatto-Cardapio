@@ -6,6 +6,17 @@
     margin: 80px 0px 20px;
 }
 
+#voltar{
+    background: #EBC181;
+    color: #333B1E;
+    font-weight: 600;
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    border: none;
+    width: 399px;
+}
 .logo-admin{
     width: 400px;
 }

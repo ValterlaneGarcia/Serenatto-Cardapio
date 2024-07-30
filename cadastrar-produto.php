@@ -1,3 +1,33 @@
+<?php 
+require_once "vendor/autoload.php";
+
+use Dbseller\ProjetoInicial\Infra\Persistence\ConexaoBd;
+use Dbseller\ProjetoInicial\Modelo\Produto;
+use Dbseller\ProjetoInicial\Repositorio\ProdutoRepositorio;
+$pdo = ConexaoBd::createConnection();
+
+if (isset($_POST['cadastro'])){
+    $produto = new Produto(null,
+        $_POST['tipo'],
+        $_POST['nome'],
+        $_POST['descricao'],
+        $_POST['preco']
+    );
+
+    if (isset($_FILES['imagem'])){
+        $produto->setImagem(uniqid() . $_FILES['imagem']['name']);
+        move_uploaded_file($_FILES['imagem']['tmp_name'], $produto->getImagemDiretorio());
+    }
+
+    $produtoRepositorio = new ProdutoRepositorio($pdo);
+    $produtoRepositorio->salvar($produto);
+
+    header("Location: admin");
+
+}
+
+
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -24,8 +54,7 @@
         <img class= "ornaments" src="img/ornaments-coffee.png" alt="ornaments">
     </section>
     <section class="container-form">
-        <form action="#">
-
+        <form method="post" enctype="multipart/form-data">
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto" required>
             <div class="container-radio">
@@ -48,6 +77,7 @@
             <input type="file" name="imagem" accept="image/*" id="imagem" placeholder="Envie uma imagem">
 
             <input type="submit" name="cadastro" class="botao-cadastrar" value="Cadastrar produto"/>
+            <a href="admin"><button type="button" id="voltar">Voltar a lista</button></a>
         </form>
     
     </section>

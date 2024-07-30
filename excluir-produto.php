@@ -7,4 +7,6 @@ use Dbseller\ProjetoInicial\Repositorio\ProdutoRepositorio;
 $pdo = ConexaoBd::createConnection();
 
 $produtoRepositorio = new ProdutoRepositorio($pdo);
-$produtoRepositorio->deletar($_GET['id']);
+$produtoRepositorio->deletar($_POST['id']);
+
+header('Location: admin');
